@@ -29,7 +29,7 @@ class FlyChoiceManagerTest {
         flyChoiceManager.add(likeTicket5);
         flyChoiceManager.add(likeTicket6);
 
-        assertArrayEquals(new FlyChoice[]{likeTicket4,likeTicket1,likeTicket6},flyChoiceManager.findAll("svn", "bgn"));
+        assertArrayEquals(new FlyChoice[]{likeTicket4, likeTicket1, likeTicket6}, flyChoiceManager.findAll("svn", "bgn"));
     }
 
     @Test
@@ -41,7 +41,7 @@ class FlyChoiceManagerTest {
         flyChoiceManager.add(likeTicket5);
         flyChoiceManager.add(likeTicket6);
 
-        assertArrayEquals(new FlyChoice[]{likeTicket3},flyChoiceManager.findAll("gfH", "Frd"));
+        assertArrayEquals(new FlyChoice[]{likeTicket3}, flyChoiceManager.findAll("gfH", "Frd"));
     }
 
     @Test
@@ -53,6 +53,6 @@ class FlyChoiceManagerTest {
         flyChoiceManager.add(likeTicket5);
         flyChoiceManager.add(likeTicket6);
 
-        assertArrayEquals(new FlyChoice[]{},flyChoiceManager.findAll("bbb", "aaa"));
+        assertArrayEquals(new FlyChoice[]{}, flyChoiceManager.findAll("bbb", "aaa"));
     }
 }
