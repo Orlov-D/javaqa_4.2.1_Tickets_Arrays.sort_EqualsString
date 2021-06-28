@@ -5,12 +5,12 @@ import ru.netology.domain.FlyChoice;
 import ru.netology.repository.FlyChoiceRepository;
 
 import java.util.Arrays;
-import java.util.Locale;
+import java.util.Comparator;
 
 public class FlyChoiceManager {
     private FlyChoiceRepository flyChoiceRepository;
 
-    FlyChoiceManager(FlyChoiceRepository flyChoiceRepository) {
+    public FlyChoiceManager(FlyChoiceRepository flyChoiceRepository) {
         this.flyChoiceRepository = flyChoiceRepository;
     }
 
@@ -18,7 +18,7 @@ public class FlyChoiceManager {
         flyChoiceRepository.save(flyChoice);
     }
 
-    public FlyChoice[] findAll(String from, String to) {
+    public FlyChoice[] findAll(String from, String to, Comparator<FlyChoice> comparator) {
         FlyChoice[] result = new FlyChoice[0];
         for (FlyChoice flyChoice : flyChoiceRepository.findAll()) {
             if (flyChoice.getAirportFrom().equalsIgnoreCase(from) & flyChoice.getAirportTo().equalsIgnoreCase(to)) {
@@ -28,7 +28,7 @@ public class FlyChoiceManager {
                 result = tmp;
             }
         }
-        Arrays.sort(result);
+        Arrays.sort(result, comparator);
         return result;
     }
 }

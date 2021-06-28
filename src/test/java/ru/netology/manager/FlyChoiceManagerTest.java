@@ -21,7 +21,7 @@ class FlyChoiceManagerTest {
     FlyChoice likeTicket6 = new FlyChoice(5, 2000, "SVN", "BGN", 120);
 
     @Test
-    void findAllMany() {
+    void findAllManyTime() {
         flyChoiceManager.add(likeTicket1);
         flyChoiceManager.add(likeTicket2);
         flyChoiceManager.add(likeTicket3);
@@ -29,7 +29,19 @@ class FlyChoiceManagerTest {
         flyChoiceManager.add(likeTicket5);
         flyChoiceManager.add(likeTicket6);
 
-        assertArrayEquals(new FlyChoice[]{likeTicket4, likeTicket1, likeTicket6}, flyChoiceManager.findAll("svn", "bgn"));
+        assertArrayEquals(new FlyChoice[]{likeTicket1, likeTicket4, likeTicket6}, flyChoiceManager.findAll("svn", "bgn", new FlyChoiceAscByTravelTime()));
+    }
+
+    @Test
+    void findAllManyPrice() {
+        flyChoiceManager.add(likeTicket1);
+        flyChoiceManager.add(likeTicket2);
+        flyChoiceManager.add(likeTicket3);
+        flyChoiceManager.add(likeTicket4);
+        flyChoiceManager.add(likeTicket5);
+        flyChoiceManager.add(likeTicket6);
+
+        assertArrayEquals(new FlyChoice[]{likeTicket4, likeTicket1, likeTicket6}, flyChoiceManager.findAll("svn", "bgn", FlyChoice::compareTo));
     }
 
     @Test
@@ -41,7 +53,7 @@ class FlyChoiceManagerTest {
         flyChoiceManager.add(likeTicket5);
         flyChoiceManager.add(likeTicket6);
 
-        assertArrayEquals(new FlyChoice[]{likeTicket3}, flyChoiceManager.findAll("gfH", "Frd"));
+        assertArrayEquals(new FlyChoice[]{likeTicket3}, flyChoiceManager.findAll("gfH", "Frd", new FlyChoiceAscByTravelTime()));
     }
 
     @Test
@@ -53,6 +65,6 @@ class FlyChoiceManagerTest {
         flyChoiceManager.add(likeTicket5);
         flyChoiceManager.add(likeTicket6);
 
-        assertArrayEquals(new FlyChoice[]{}, flyChoiceManager.findAll("bbb", "aaa"));
+        assertArrayEquals(new FlyChoice[]{}, flyChoiceManager.findAll("bbb", "aaa", new FlyChoiceAscByTravelTime()));
     }
 }
